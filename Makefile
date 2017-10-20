@@ -158,4 +158,11 @@ conf:
 	$(QUIET) install -m 644 $(TOP)/$(ESS_MODULE_MAKEFILE)  $(EPICS_MODULE_SRC_PATH)/
 
 
+
+epics:
+	@echo "EPICS_BASE=/epics/bases/base-3.15.4"  > $(TOP)/$(EPICS_MODULE_SRC_PATH)/configure/RELEASE.local
+	$(MAKE) -C $(EPICS_MODULE_SRC_PATH)
+
+
+
 .PHONY: env $(E3_ENV_NAME) $(EPICS_MODULE_NAME) git-submodule-sync init help help2 build clean install uninstall conf rebuild

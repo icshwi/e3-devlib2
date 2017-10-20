@@ -26,6 +26,7 @@ TOP:=$(CURDIR)
 include $(TOP)/configure/CONFIG
 
 -include $(TOP)/$(E3_ENV_NAME)/$(E3_ENV_NAME)
+-include $(TOP)/$(E3_ENV_NAME)/epics-community-env
 
 
 # Keep always the module up-to-date
@@ -160,9 +161,12 @@ conf:
 
 
 epics:
-	@echo "EPICS_BASE=/epics/bases/base-3.15.4"  > $(TOP)/$(EPICS_MODULE_SRC_PATH)/configure/RELEASE.local
-	$(MAKE) -C $(EPICS_MODULE_SRC_PATH)
+#	sudo -E ' $(MAKE) -C $(EPICS_MODULE_SRC_PATH) clean'
+	@echo "EPICS_BASE=$(COMMUNITY_EPICS_BASE)"  > $(TOP)/$(EPICS_MODULE_SRC_PATH)/configure/RELEASE.local
+	@echo "INSTALL_LOCATION=$(M_DEVLIB2)" > $(TOP)/$(EPICS_MODULE_SRC_PATH)/configure/CONFIG_SITE	
+	sudo -E bash -c "$(MAKE) -C $(EPICS_MODULE_SRC_PATH)"
 
 
 
-.PHONY: env $(E3_ENV_NAME) $(EPICS_MODULE_NAME) git-submodule-sync init help help2 build clean install uninstall conf rebuild
+
+.PHONY: env $(E3_ENV_NAME) $(EPICS_MODULE_NAME) git-submodule-sync init help help2 build clean install uninstall conf rebuild epics 

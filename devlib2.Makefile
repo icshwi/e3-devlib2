@@ -1,5 +1,5 @@
 
-include ${REQUIRE_TOOLS}/driver.makefile
+include ${E3_REQUIRE_TOOLS}/driver.makefile
 
 
 COMMON:= common
@@ -49,3 +49,7 @@ SOURCES += $(VMEAPP)/devlib_compat.c
 DBDS += $(VMEAPP)/epicsvme.dbd
 
 
+
+# db rule is the default in RULES_E3, so add the empty one
+
+db:

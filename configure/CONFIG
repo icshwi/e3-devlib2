@@ -16,12 +16,6 @@ else
 include $(TOP)/configure/CONFIG_MODULE
 endif
 
-# The definitions shown below can also be placed in an untracked RELEASE.local
--include $(TOP)/../RELEASE.local
--include $(TOP)/configure/RELEASE.local
--include $(TOP)/../CONFIG_MODULE.local
--include $(TOP)/configure/CONFIG_MODULE.local
-
 
 ## Asyn, ADSupport may needs to define other variables
 

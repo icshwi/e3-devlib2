@@ -32,7 +32,7 @@ mrfioc2_VERSION=
 exprtk_VERSION=
 motor_VERSION=
 ecmc_VERSION=
-ethercatmc_VERSION=
+EthercatMC_VERSION=
 ecmctraining_VERSION=
 
 

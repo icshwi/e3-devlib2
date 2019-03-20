@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2018 - Present  European Spallation Source ERIC
+#  Copyright (c) 2018 - 2019 European Spallation Source ERIC
 #
 #  The program is free software: you can redistribute
 #  it and/or modify it under the terms of the GNU General Public License
@@ -17,7 +17,7 @@
 # 
 # Author  : Jeong Han Lee
 # email   : han.lee@esss.se
-# Date    : Friday, September 14 15:18:47 CEST 2018
+# Date    : Wednesday, March 20 09:59:26 CET 2019
 # version : 0.0.1
 #
 
@@ -25,9 +25,7 @@ where_am_I := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 include ${E3_REQUIRE_TOOLS}/driver.makefile
 include $(E3_REQUIRE_CONFIG)/DECOUPLE_FLAGS
 
-
 COMMON:= common
-
 
 ifeq ($(EPICS_VERSION)$(EPICS_REVISION)$(EPICS_MODIFICATION),3150)
 # The MMIO definitions are included in EPICS Base >=3.15.1
@@ -46,6 +44,22 @@ endif
 endif
 
 
+ifeq ($(WITH_EXPLORE),YES)
+
+EXPLOREAPP:=exploreApp
+EXPLORESRC:=$(EXPLOREAPP)/src
+EXPLOREDB:=$(EXPLOREAPP)/Db
+
+SOURCES += $(EXPLORESRC)/devexplore.cpp
+SOURCES += $(EXPLORESRC)/devexplore_irq.cpp
+SOURCES += $(EXPLORESRC)/devexplore_frib.cpp
+SOURCES += $(EXPLORESRC)/devexplore_util.cpp
+
+DBDS += $(EXPLORESRC)/exploreSupport.dbd
+
+TEMPLATES += $(EXPLOREDB)/frib-flash.db
+endif
+
 
 PCIAPP:= pciApp
 
@@ -60,6 +74,8 @@ SOURCES += $(PCIAPP)/pcish.c
 DBDS += $(PCIAPP)/epicspci.dbd
 
 
+# We don't need the following parts in near future
+#
 VMEAPP:= vmeApp
 
 HEADERS += $(VMEAPP)/devcsr.h
@@ -78,6 +94,6 @@ DBDS += $(VMEAPP)/epicsvme.dbd
 
 db:
 #
-.PHONY: vlibs
 vlibs:
 #
+.PHONY: vlibs db

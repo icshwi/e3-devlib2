@@ -1,0 +1,12 @@
+diff --git vmeApp/devcsr.h vmeApp/devcsr.h
+index f825fcb..9d745a3 100644
+--- vmeApp/devcsr.h
++++ vmeApp/devcsr.h
+@@ -34,6 +34,7 @@
+ #endif
+ 
+ #include <epicsTypes.h>
++#include <shareLib.h>
+ #include "epicsMMIO.h"
+ #include "vmedefs.h"
+ 
